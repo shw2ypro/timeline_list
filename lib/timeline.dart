@@ -14,11 +14,14 @@ class TimelineProperties {
   final Color lineColor;
   final double lineWidth;
   final double iconSize;
+  final double circleSize;
 
-  const TimelineProperties({Color lineColor, double lineWidth, double iconSize})
+  const TimelineProperties(
+      {Color lineColor, double lineWidth, double iconSize, double circleSize})
       : lineColor = lineColor ?? const Color(0xFF333333),
         lineWidth = lineWidth ?? 2.5,
-        iconSize = iconSize ?? TimelineBoxDecoration.DEFAULT_ICON_SIZE;
+        iconSize = iconSize ?? TimelineBoxDecoration.DEFAULT_ICON_SIZE,
+        circleSize = circleSize ?? TimelineBoxDecoration.DEFAULT_ICON_SIZE;
 }
 
 class Timeline extends StatelessWidget {
@@ -37,18 +40,22 @@ class Timeline extends StatelessWidget {
   /// [TimelinePosition.Center].
   Timeline(
       {List<TimelineModel> children,
-        Color lineColor,
-        double lineWidth,
-        double iconSize,
-        this.controller,
-        this.position = TimelinePosition.Center,
-        this.physics,
-        this.shrinkWrap = false,
-        this.primary = false,
-        this.reverse = false})
+      Color lineColor,
+      double lineWidth,
+      double iconSize,
+      double circleSize,
+      this.controller,
+      this.position = TimelinePosition.Center,
+      this.physics,
+      this.shrinkWrap = false,
+      this.primary = false,
+      this.reverse = false})
       : itemCount = children.length,
         properties = TimelineProperties(
-            lineColor: lineColor, lineWidth: lineWidth, iconSize: iconSize),
+            lineColor: lineColor,
+            lineWidth: lineWidth,
+            iconSize: iconSize,
+            circleSize: circleSize),
         itemBuilder = ((BuildContext context, int i) => children[i]);
 
   /// Creates a scrollable timeline of widgets that are created on demand.
@@ -56,18 +63,22 @@ class Timeline extends StatelessWidget {
   /// when `position` is not [TimelinePosition.Center].
   Timeline.builder(
       {@required this.itemBuilder,
-        this.itemCount,
-        this.controller,
-        Color lineColor,
-        double lineWidth,
-        double iconSize,
-        this.position = TimelinePosition.Center,
-        this.physics,
-        this.shrinkWrap = false,
-        this.primary = false,
-        this.reverse = false})
+      this.itemCount,
+      this.controller,
+      Color lineColor,
+      double lineWidth,
+      double iconSize,
+      double circleSize,
+      this.position = TimelinePosition.Center,
+      this.physics,
+      this.shrinkWrap = false,
+      this.primary = false,
+      this.reverse = false})
       : properties = TimelineProperties(
-      lineColor: lineColor, lineWidth: lineWidth, iconSize: iconSize);
+            lineColor: lineColor,
+            lineWidth: lineWidth,
+            iconSize: iconSize,
+            circleSize: circleSize);
 
   @override
   Widget build(BuildContext context) {

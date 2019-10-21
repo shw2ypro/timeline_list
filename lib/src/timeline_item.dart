@@ -98,14 +98,15 @@ class TimelineItemLeft extends TimelineItem {
         children: <Widget>[
           Container(
               decoration: TimelineBoxDecoration(
-                  isFirst: model.isFirst,
-                  isLast: model.isLast,
-                  iconSize: model.icon != null
-                      ? properties.iconSize
-                      : TimelineBoxDecoration.DEFAULT_DOT_SIZE,
-                  iconBackground: model.iconBackground,
-                  properties: properties,
-                  timelinePosition: TimelinePosition.Left),
+                isFirst: model.isFirst,
+                isLast: model.isLast,
+                iconSize: model.icon != null
+                    ? properties.iconSize
+                    : properties.circleSize,
+                iconBackground: model.iconBackground,
+                properties: properties,
+                timelinePosition: TimelinePosition.Left,
+              ),
               width: properties.iconSize * 2,
               alignment: Alignment.center,
               child: icon),
